@@ -1,0 +1,5 @@
+host=localhost
+port=3306
+user=cs5330
+password=pw5330
+database=5330u25prog

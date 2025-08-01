@@ -1,0 +1,49 @@
+-- Planets
+INSERT INTO planet (name, size, population) VALUES ('Earth', 51010, 8000);
+INSERT INTO planet (name, size, population) VALUES ('Mars', 14480, 0);
+INSERT INTO planet (name, size, population) VALUES ('Jupiter', 61400, 0);
+
+-- Space Stations
+INSERT INTO spacestation (name, location_type, planet_id, orbiting_planet_id) VALUES ('ISS', 'orbit', 1, 1);
+INSERT INTO spacestation (name, location_type, planet_id, orbiting_planet_id) VALUES ('MarsStation', 'orbit', 2, 2);
+INSERT INTO spacestation (name, location_type, planet_id, orbiting_planet_id) VALUES ('JupiterOutpost', 'orbit', 3, 3);
+
+-- Spaceports
+INSERT INTO spaceport (name, capacity_limit, fee_per_seat, planet_id, station_id) VALUES ('EarthPort', 200, 300, 1, NULL);
+INSERT INTO spaceport (name, capacity_limit, fee_per_seat, planet_id, station_id) VALUES ('MarsPort', 150, 400, 2, NULL);
+INSERT INTO spaceport (name, capacity_limit, fee_per_seat, planet_id, station_id) VALUES ('OrbitalDock1', 100, 500, NULL, 1);
+INSERT INTO spaceport (name, capacity_limit, fee_per_seat, planet_id, station_id) VALUES ('RedDock', 80, 450, NULL, 2);
+INSERT INTO spaceport (name, capacity_limit, fee_per_seat, planet_id, station_id) VALUES ('JupiterPort', 60, 500, 3, NULL);
+INSERT INTO spaceport (name, capacity_limit, fee_per_seat, planet_id, station_id) VALUES ('JupiterDock', 70, 600, NULL, 3);
+
+-- Spacecraft Types
+INSERT INTO spacecraft_type (type_name, capacity, `range`) VALUES ('Falcon9', 100, 150000);
+INSERT INTO spacecraft_type (type_name, capacity, `range`) VALUES ('Starliner', 80, 100000);
+INSERT INTO spacecraft_type (type_name, capacity, `range`) VALUES ('Orion', 60, 120000);
+
+-- Routes
+INSERT INTO route (origin_spaceport_id, destination_spaceport_id, distance) VALUES (1, 2, 90000);     -- Earth -> Mars
+INSERT INTO route (origin_spaceport_id, destination_spaceport_id, distance) VALUES (1, 3, 60000);     -- Earth -> OrbitalDock1
+INSERT INTO route (origin_spaceport_id, destination_spaceport_id, distance) VALUES (3, 4, 70000);     -- OrbitalDock1 -> RedDock
+INSERT INTO route (origin_spaceport_id, destination_spaceport_id, distance) VALUES (2, 4, 80000);     -- Mars -> RedDock
+INSERT INTO route (origin_spaceport_id, destination_spaceport_id, distance) VALUES (4, 5, 90000);     -- RedDock -> JupiterPort
+INSERT INTO route (origin_spaceport_id, destination_spaceport_id, distance) VALUES (1, 5, 120000);    -- Earth -> JupiterPort (long)
+
+-- Flights
+INSERT INTO flight (flight_number, route_id, craft_type_id, departure_time, flight_time) VALUES ('F201', 1, 1, '08:00:00', 2.0);
+INSERT INTO flight (flight_number, route_id, craft_type_id, departure_time, flight_time) VALUES ('F202', 2, 2, '09:00:00', 1.0);
+INSERT INTO flight (flight_number, route_id, craft_type_id, departure_time, flight_time) VALUES ('F203', 3, 3, '11:00:00', 1.5);
+INSERT INTO flight (flight_number, route_id, craft_type_id, departure_time, flight_time) VALUES ('F204', 4, 1, '10:00:00', 1.8);
+INSERT INTO flight (flight_number, route_id, craft_type_id, departure_time, flight_time) VALUES ('F205', 5, 2, '13:30:00', 2.5);
+INSERT INTO flight (flight_number, route_id, craft_type_id, departure_time, flight_time) VALUES ('F206', 6, 1, '07:30:00', 4.0);
+
+-- Flight Schedule (Monday and Wednesday)
+INSERT INTO flight_schedule (flight_number, day_of_week) VALUES ('F201', 'Monday');
+INSERT INTO flight_schedule (flight_number, day_of_week) VALUES ('F202', 'Monday');
+INSERT INTO flight_schedule (flight_number, day_of_week) VALUES ('F203', 'Monday');
+INSERT INTO flight_schedule (flight_number, day_of_week) VALUES ('F204', 'Monday');
+INSERT INTO flight_schedule (flight_number, day_of_week) VALUES ('F205', 'Monday');
+INSERT INTO flight_schedule (flight_number, day_of_week) VALUES ('F206', 'Monday');
+
+INSERT INTO flight_schedule (flight_number, day_of_week) VALUES ('F201', 'Wednesday');
+INSERT INTO flight_schedule (flight_number, day_of_week) VALUES ('F205', 'Wednesday');
